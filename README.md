@@ -16,13 +16,13 @@ The default location for the credentials file is:
 * %USERPROFILE%\\.aws\\credentials  (Windows)
 
 The basic format of the credentials file is:
-
+```
 [default]
 
-aws\_access\_key\_id = ACCESS\_KEY
+aws_access_key_id = ACCESS_KEY
 
-aws\_secret\_access\_key = SECRET\_KEY
-
+aws_secret_access_key = SECRET_KEY
+```
 
 ## Usage
 ```
