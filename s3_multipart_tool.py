@@ -36,6 +36,7 @@ def list_multiparts(bucket_names):
         for name in bucket_names:
             bucket = s3.Bucket(name)
             bucket_size = 0
+            part_count = 0
 
             for upload in bucket.multipart_uploads.all():
                 multipart_size = 0
@@ -43,10 +44,11 @@ def list_multiparts(bucket_names):
                 for part in upload.parts.all():
                     output("   " + str(part.last_modified) + " -- " + convertDiskSizeToSI(part.size) + " -- " + upload.key + " -- " + part.e_tag)
                     multipart_size += part.size
+                    part_count += 1
 
                 bucket_size += multipart_size
 
-            output("** " + convertDiskSizeToSI(bucket_size) + " -- " + bucket.name)
+            output(bucket.name + " -- " + str(part_count) + " parts -- " + convertDiskSizeToSI(bucket_size))
     except Exception as e:
         print(e)
 
